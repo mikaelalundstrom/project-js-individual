@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+    <title>Animal List</title>
+  </head>
+  <body>
+    <header>
+      <figure class="icon">
+        <a href=""><i class="lar la-heart"></i><i class="las la-otter"></i></a>
+      </figure>
+      <nav><a href="">Your Lists</a></nav>
+    </header>
+    <main>
+      <section class="intro">
+        <div class="page-container">
+          <h1>FavAnimals</h1>
+          <p>
+            Here you can save all your favorite animals in one place! Just click the heart icon on
+            the facts page for an animal to add it to your favorites list, or use the + to make a
+            new collection of your own!
+          </p>
+        </div>
+      </section>
+      <section class="search">
+        <div class="page-container">
+          <form id="search-form">
+            <input type="text" id="search" placeholder="Search for an animal here..." required />
+            <button>Search</button>
+          </form>
+          <section class="search-result">
+            <a href=""
+              ><article class="search-result-item">
+                <div class="name">
+                  <h2 class="common-name">Cheetah</h2>
+                  <h3 class="scientific-name">Acinonyx jubatus</h3>
+                </div>
+
+                <p class="slogan">The fastest land mammal in the world!</p>
+
+                <p class="distinct-feature">
+                  <span>Recognizing features:</span> Yellowish fur covered in small black spots
+                </p>
+                <p class="location"><span>Location:</span> Africa, Asia, Eurasia</p>
+              </article>
+            </a>
+          </section>
+          <section class="search-message d-none">
+            <h4>Didn't find what you where looking for?</h4>
+            <p>Try making your search more or less exact!</p>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
