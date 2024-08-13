@@ -65,8 +65,7 @@ header {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 
-  .search-result-item,
-  .list-item {
+  .grid-item {
     background-color: white;
     padding: 2rem;
     border-radius: 1rem;

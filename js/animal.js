@@ -10,12 +10,7 @@ function getNameFromQueryString() {
   return decodeURIComponent(urlParams.get("name"));
 }
 
-// Get current search items from localStorage
-function getCurrentSearchItems() {
-  return JSON.parse(localStorage.getItem("currentSearch"));
-}
-
-// Display animal info for specific user
+// Display animal info for specific animal
 function renderAnimalInfo() {
   const animalName = getNameFromQueryString();
   const currentSearchItems = getCurrentSearchItems();
@@ -53,11 +48,6 @@ function renderAnimalInfo() {
       }
     }
   });
-}
-
-// Get favorites from localStorage
-function getFavoriteAnimals() {
-  return JSON.parse(localStorage.getItem("favoriteAnimals")) || [];
 }
 
 // Set favorites in localStorage
