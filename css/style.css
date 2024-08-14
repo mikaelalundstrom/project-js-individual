@@ -1,3 +1,5 @@
+/*-------------------- GENERAL --------------------*/
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 :root {
@@ -11,6 +13,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: var(--font-primary);
 }
 
 html {
@@ -28,7 +31,7 @@ a {
 }
 
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 .page-container {
@@ -114,9 +117,14 @@ header {
     .distinct-feature {
       margin-bottom: 0.5rem;
     }
+
+    .location i {
+      padding-right: 0.5rem;
+    }
   }
 }
 
+/*-------------------- INDEX PAGE --------------------*/
 section.intro {
   padding: 12rem 0;
   color: white;
@@ -203,6 +211,7 @@ section.search {
   }
 }
 
+/*-------------------- ANIMAL PAGE --------------------*/
 section.animal-info {
   background-color: var(--color-primary);
   min-height: 100vh;
@@ -227,7 +236,7 @@ section.animal-info {
     background-color: white;
     border-radius: 1rem;
     display: flex;
-    padding: 0.5rem 2rem;
+    padding: 1rem 2rem;
     justify-content: flex-end;
     gap: 1rem;
     margin-bottom: 2rem;
@@ -239,6 +248,52 @@ section.animal-info {
 
     .favorite {
       color: var(--color-red);
+    }
+  }
+
+  .add-remove {
+    background-color: var(--color-secondary);
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+
+    & > * {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & > * {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      form {
+        justify-content: space-between;
+        flex: 1;
+      }
+    }
+
+    button {
+      border: none;
+      padding: 0.5rem 1.5rem;
+      background-color: white;
+      font: var(--font-primary);
+      border-radius: 2rem;
+
+      &:hover {
+        color: white;
+        background-color: var(--color-primary);
+        cursor: pointer;
+      }
+    }
+
+    input {
+      border: none;
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      margin-left: 1rem;
+      font-family: var(--font-primary);
+      font-size: 1rem;
     }
   }
 
@@ -282,6 +337,7 @@ section.animal-info {
   }
 }
 
+/*-------------------- LIST PAGE --------------------*/
 section.your-lists {
   background-color: var(--color-secondary);
   min-height: 100vh;
@@ -293,18 +349,97 @@ section.your-lists {
   }
 
   .list {
-    h2 {
+    .list-title {
       background-color: white;
       padding: 2rem;
       font-size: 2rem;
       font-weight: 900;
       border-radius: 1rem;
-      margin: 4rem 0rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+
+      .favorite {
+        color: var(--color-red);
+      }
+
+      .list-actions i {
+        cursor: pointer;
+      }
+
+      i + i {
+        margin-left: 1rem;
+      }
+
+      form {
+        font-weight: normal;
+        font-size: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        div {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        label {
+          font-weight: bold;
+        }
+
+        input {
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+          border-radius: 2rem;
+          border: 1px solid #cecece;
+          background-color: white;
+          font-family: var(--font-primary);
+        }
+
+        button {
+          font-size: 1rem;
+          background-color: var(--color-primary);
+          color: white;
+          border: none;
+          border-radius: 2rem;
+          padding: 0.5rem 1.5rem;
+          font-weight: bold;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        i {
+          font-size: 2rem;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
     }
 
-    hr {
-      margin: 4rem 0;
-      border: 2px solid var(--color-primary);
+    .message {
+      text-align: center;
+      padding: 4rem 0;
+
+      h4 {
+        font-size: 1.5rem;
+        font-weight: 900;
+      }
+
+      p {
+        font-size: 1.5rem;
+      }
     }
+  }
+
+  .custom-lists .list {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 4px solid var(--color-primary);
   }
 }

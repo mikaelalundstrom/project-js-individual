@@ -1,6 +1,5 @@
 window.addEventListener("load", () => {
   setupSearchForm();
-  // renderCurrentSearchResults();
 });
 
 // get animals based on search input from API
@@ -18,9 +17,11 @@ async function getAnimalsbySearch(search) {
     const data = await response.json();
     console.log(data);
     // clears currentSearch localStorage
-    removePreviousSearch();
+    removeCollection("currentSearch");
+
     // adds fecthed data to localStorage
-    saveCurrentSearch(data);
+    setCollection("currentSearch", data);
+
     return data;
   } catch (error) {
     console.log(error);
@@ -39,27 +40,6 @@ function setupSearchForm() {
     renderSearchResults(await getAnimalsbySearch(search));
   });
 }
-
-// Save the current search in localStorage
-function saveCurrentSearch(data) {
-  localStorage.setItem("currentSearch", JSON.stringify(data));
-}
-
-// Remove current search from localStorage
-function removePreviousSearch() {
-  localStorage.removeItem("currentSearch");
-}
-
-// function getCurrentSearchItems() {
-//   return JSON.parse(localStorage.getItem("currentSearch"));
-// }
-
-// function renderCurrentSearchResults() {
-//   const currentSearchItems = getCurrentSearchItems();
-//   if (currentSearchItems.length > 0) {
-//     renderSearchResults(currentSearchItems);
-//   }
-// }
 
 // Render the search results for the user
 function renderSearchResults(data) {

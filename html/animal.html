@@ -32,6 +32,34 @@
             <i class="las la-minus-circle remove"></i>
             <i class="lar la-heart favorite"></i>
           </section>
+          <section class="add-remove d-none">
+            <!-- ADD TO -->
+            <section class="add-options">
+              <div class="existing-lists-add">
+                <p>There are no lists to add this animal to.</p>
+              </div>
+              <div class="new-list-btn">
+                <button>New List</button>
+              </div>
+            </section>
+            <!-- ADD TO NEW -->
+            <section class="new-list d-none">
+              <form id="new-list-form">
+                <div>
+                  <label for="listname">New List Name:</label>
+                  <input type="text" id="listname" required />
+                </div>
+
+                <button>Add</button>
+              </form>
+            </section>
+            <!-- REMOVE FROM -->
+            <section class="remove-options d-none">
+              <div class="existing-lists-remove">
+                <p>This Animal is not added to any lists.</p>
+              </div>
+            </section>
+          </section>
           <section class="facts">
             <section class="taxonomy">
               <h3>Taxonomy</h3>

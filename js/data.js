@@ -53,12 +53,61 @@ function createGridItems(data, parentElemRef) {
   });
 }
 
-// Get current search items from localStorage
-function getCurrentSearchItems() {
-  return JSON.parse(localStorage.getItem("currentSearch"));
+// Check if animal is valid
+function validateAnimal(animalName) {
+  let lists = { ...localStorage };
+  let validAnimal = false;
+  for (const property in lists) {
+    animalList = JSON.parse(lists[property]);
+    animalList.forEach((animal) => {
+      if (animal.name === animalName) {
+        validAnimal = animal;
+      }
+    });
+  }
+  return validAnimal;
 }
 
-// Get favorites from localStorage
-function getFavoriteAnimals() {
-  return JSON.parse(localStorage.getItem("favoriteAnimals")) || [];
+// Get keys from localStorage (only includes user-made collections)
+function getCollectionKeys() {
+  let keys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    if (localStorage.key(i) !== "currentSearch" && localStorage.key(i) !== "favoriteAnimals")
+      keys.push(localStorage.key(i));
+  }
+  return keys;
+}
+
+// Get items from localStorage
+function getCollection(key) {
+  return JSON.parse(localStorage.getItem(key)) || [];
+}
+
+// Set collection
+function setCollection(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+// Remove collection
+function removeCollection(key) {
+  localStorage.removeItem(key);
+}
+
+// Add animal to collection
+function addItemToCollection(key, animal) {
+  const collection = getCollection(key);
+
+  if (!collection.find((item) => item.name === animal.name)) {
+    collection.push(animal);
+    setCollection(key, collection);
+  }
+}
+
+// Remove animal from collection
+function removeItemFromCollection(key, animalName) {
+  const collection = getCollection(key);
+  setCollection(
+    key,
+    collection.filter((item) => animalName !== item.name)
+  );
 }
