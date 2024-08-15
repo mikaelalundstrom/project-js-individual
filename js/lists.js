@@ -57,15 +57,24 @@ function setupRemoveListButtons() {
   const removeBtnRefs = document.querySelectorAll(".la-trash-alt");
   removeBtnRefs.forEach((btn) => {
     btn.addEventListener("click", (e) => {
+      const listName = e.target.parentElement.parentElement.textContent;
       // to avoid multiple edit/remove views open at once
       if (document.querySelector("form.edit") || document.querySelector("div.delete-list-view")) {
-        // force close other edit/remove view (user has to click button again)
         renderLists();
+        const listTitleRefs = document.querySelectorAll(".list-title");
+        listTitleRefs.forEach((elem) => {
+          if (listName === elem.textContent) {
+            elem.innerHTML = `<div class="delete-list-view">
+            <div><p>Are you sure you want to delete this list? </p></div>
+            <div><button class="delete-list">Delete</button><i class="las la-times"></i></div></div>`;
+
+            setupConfirmRemoveList(listName);
+          }
+        });
       } else {
-        const listName = e.target.parentElement.parentElement.textContent;
         e.target.parentElement.parentElement.innerHTML = `<div class="delete-list-view">
-      <div><p>Are you sure you want to delete this list? </p></div>
-      <div><button class="delete-list">Delete</button><i class="las la-times"></i></div></div>`;
+        <div><p>Are you sure you want to delete "${listName}"? </p></div>
+        <div><button class="delete-list">Delete</button><i class="las la-times"></i></div></div>`;
 
         setupConfirmRemoveList(listName);
       }
@@ -91,12 +100,23 @@ function setupEditListButtons() {
   const editBtnRefs = document.querySelectorAll(".la-pen");
   editBtnRefs.forEach((btn) => {
     btn.addEventListener("click", (e) => {
+      const listName = e.target.parentElement.parentElement.textContent;
       // to avoid multiple edit/remove views open at once
       if (document.querySelector("form.edit") || document.querySelector("div.delete-list-view")) {
-        // force close other edit/remove view (user has to click button again)
         renderLists();
+        const listTitleRefs = document.querySelectorAll(".list-title");
+        listTitleRefs.forEach((elem) => {
+          if (listName === elem.textContent) {
+            elem.innerHTML = `<form class="edit">
+            <div><label for="editlistname">Edit list name:</label>
+              <input type="text" id="editlistname" value="${listName}" required />
+            </div>
+            <div><button>Update</button><i class="las la-times"></i></div></form>`;
+
+            setupEditListForms(listName);
+          }
+        });
       } else {
-        const listName = e.target.parentElement.parentElement.textContent;
         // Edit view template
         e.target.parentElement.parentElement.innerHTML = `<form class="edit">
                 <div><label for="editlistname">Edit list name:</label>

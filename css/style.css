@@ -73,10 +73,15 @@ header {
     background-color: white;
     padding: 2rem;
     border-radius: 1rem;
+    transition: all 0.3s;
 
     &:hover .name h2,
     &:hover .name h3 {
       color: var(--color-primary);
+    }
+
+    &:hover {
+      transform: scale(1.05);
     }
 
     .name {
@@ -133,7 +138,7 @@ section.intro {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
+  background-attachment: fixed;
   background-color: var(--color-primary);
 
   h1 {
@@ -242,6 +247,11 @@ section.search {
 /*-------------------- ANIMAL PAGE --------------------*/
 section.animal-info {
   background-color: var(--color-primary);
+  background-image: url("../assets/transparent-icon-bg-light.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   min-height: 100vh;
   padding-bottom: 6rem;
   .name {
@@ -426,6 +436,14 @@ section.animal-info {
           text-transform: capitalize;
           transition: all 0.3s;
 
+          &:hover {
+            padding-right: 1rem;
+
+            span {
+              color: var(--color-primary);
+            }
+          }
+
           span {
             font-weight: 700;
             padding-right: 2rem;
@@ -436,13 +454,7 @@ section.animal-info {
     }
 
     .characteristics {
-      flex: 4;
-
-      li {
-        &:hover {
-          padding-right: 1rem;
-        }
-      }
+      flex: 3;
     }
   }
 }

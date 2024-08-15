@@ -55,18 +55,21 @@ function createGridItems(data, parentElemRef) {
 
 // Check if animal is valid
 function validateAnimal(animalName) {
-  let lists = { ...localStorage };
   let validAnimal = false;
-  // go through all lists saved in localStorage
-  for (const property in lists) {
-    animalList = JSON.parse(lists[property]);
-    animalList.forEach((animal) => {
-      // if animal is found, change value of validAnimal
+  // get all collections (lists)
+  const keys = getAllCollectionKeys();
+
+  keys.forEach((key) => {
+    // get listcontent
+    const list = getCollection(key);
+    list.forEach((animal) => {
+      // if animal is found, set as valid
       if (animal.name === animalName) {
         validAnimal = animal;
       }
     });
-  }
+  });
+
   return validAnimal;
 }
 
@@ -74,9 +77,16 @@ function validateAnimal(animalName) {
 function getCollectionKeys() {
   let keys = [];
   for (let i = 0; i < localStorage.length; i++) {
-    if (localStorage.key(i) !== "currentSearch" && localStorage.key(i) !== "favoriteAnimals")
-      keys.push(localStorage.key(i));
+    // Only get LS keys relevant to this project
+    if (localStorage.key(i).startsWith("favA_")) {
+      const key = localStorage.key(i).substring(5);
+
+      if (key !== "currentSearch" && key !== "favoriteAnimals") {
+        keys.push(key);
+      }
+    }
   }
+
   return keys;
 }
 
@@ -84,24 +94,31 @@ function getCollectionKeys() {
 function getAllCollectionKeys() {
   let keys = [];
   for (let i = 0; i < localStorage.length; i++) {
-    keys.push(localStorage.key(i));
+    // Only get LS keys relevant to this project
+    if (localStorage.key(i).startsWith("favA_")) {
+      const key = localStorage.key(i).substring(5);
+
+      keys.push(key);
+    }
   }
   return keys;
 }
 
+// Data saved to localStorage has the prefix "favA_" added to it
+
 // Get collection (list) from localStorage
 function getCollection(key) {
-  return JSON.parse(localStorage.getItem(key)) || [];
+  return JSON.parse(localStorage.getItem("favA_" + key)) || [];
 }
 
 // Set collection (list)
 function setCollection(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
+  localStorage.setItem("favA_" + key, JSON.stringify(data));
 }
 
 // Remove collection (list) from localStorage
 function removeCollection(key) {
-  localStorage.removeItem(key);
+  localStorage.removeItem("favA_" + key);
 }
 
 // Add animal to collection (list)
