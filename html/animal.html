@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <link
       rel="stylesheet"
       href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
@@ -25,7 +25,8 @@
         <div class="page-container">
           <section class="name">
             <h1>Animal Name</h1>
-            <h2>Scientific name</h2>
+            <h2><i class="las la-dna"></i></h2>
+            <h3><i class="las la-map-marker"></i></h3>
           </section>
           <section class="list-actions">
             <i class="las la-plus-circle add"></i>
@@ -61,10 +62,21 @@
             </section>
           </section>
           <section class="facts">
-            <section class="taxonomy">
-              <h3>Taxonomy</h3>
-              <ul class="taxonomy-list"></ul>
-            </section>
+            <div>
+              <section class="taxonomy">
+                <h3>Taxonomy</h3>
+                <ul class="taxonomy-list"></ul>
+              </section>
+              <section class="animal-icons">
+                <div class="type-icon"><i class="las la-fish"></i></div>
+                <div class="location-icon"><i class="las la-globe"></i></div>
+              </section>
+              <nav class="links">
+                <a href="./index.html">Home</a>
+                <a href="./your-lists.html">Lists</a>
+              </nav>
+            </div>
+
             <section class="characteristics">
               <h3>Characteristics</h3>
               <ul class="characteristics-list"></ul>
@@ -73,7 +85,8 @@
         </div>
       </section>
     </main>
-    <script src="/js/data.js"></script>
-    <script src="/js/animal.js"></script>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/animal.js"></script>
   </body>
 </html>

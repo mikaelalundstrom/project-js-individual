@@ -15,7 +15,7 @@ async function getAnimalsbySearch(search) {
     }
 
     const data = await response.json();
-    console.log(data);
+
     // clears currentSearch localStorage
     removeCollection("currentSearch");
 
