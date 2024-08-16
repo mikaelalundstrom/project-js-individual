@@ -40,6 +40,30 @@ a {
   margin: 0 auto;
 }
 
+a.scroll-to-top {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  right: 0;
+  padding: 1rem;
+  margin-right: 4rem;
+  margin-bottom: 4rem;
+  bottom: 0;
+  background-color: white;
+  color: var(--color-primary);
+  font-size: 2rem;
+  border-radius: 50%;
+  -webkit-text-stroke: 1px var(--color-primary);
+
+  &.d-none {
+    opacity: 0;
+    transition: all 0.3s allow-discrete;
+  }
+}
+
 /*-------------------- HEADER --------------------*/
 header {
   background-color: white;
@@ -198,8 +222,9 @@ section.search {
   background-color: var(--color-secondary);
 
   form {
-    display: flex;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem 2rem;
     margin-bottom: 4rem;
 
     input {
@@ -227,10 +252,16 @@ section.search {
         transform: scale(1.1);
       }
     }
+
+    .error {
+      color: var(--color-red);
+      font-style: italic;
+      font-weight: bold;
+    }
   }
 
   .search-message {
-    margin-top: 8rem;
+    margin-top: 4rem;
     text-align: center;
 
     h4 {
@@ -379,7 +410,8 @@ section.animal-info {
         display: flex;
         gap: 1rem;
 
-        div {
+        figure {
+          flex: 1;
           background-color: white;
           color: var(--color-black);
           aspect-ratio: 1/1;

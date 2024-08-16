@@ -11,7 +11,7 @@
     <title>FavAnimals - Home</title>
   </head>
   <body>
-    <header>
+    <header id="top">
       <figure class="icon">
         <a href="./index.html"><i class="lar la-heart"></i><i class="las la-otter"></i></a>
       </figure>
@@ -40,6 +40,7 @@
           <form id="search-form">
             <input type="text" id="search" placeholder="Search for an animal here..." required />
             <button>Search</button>
+            <p class="error d-none">Your search needs to be at least 2 characters long.</p>
           </form>
           <section class="search-result"></section>
           <section class="search-message d-none">
@@ -49,6 +50,7 @@
         </div>
       </section>
     </main>
+    <a href="#top" class="scroll-to-top d-none"><i class="las la-arrow-up"></i></a>
 
     <script src="../js/data.js"></script>
     <script src="../js/index.js"></script>

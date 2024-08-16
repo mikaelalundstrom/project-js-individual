@@ -7,12 +7,16 @@ window.addEventListener("load", () => {
   setupAddToRemoveFromList();
 });
 
+/* ------------- GET CURRENT ANIMAL ------------- */
+
 // Get animalName from URL params
 function getNameFromQueryString() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return decodeURIComponent(urlParams.get("name"));
 }
+
+/* ------------- DISPLAY ANIMAL INFO ------------- */
 
 // Display animal info for specific animal
 function renderAnimalInfo() {
@@ -111,6 +115,8 @@ function matchIconToLocation(animal) {
   }
 }
 
+/* ------------- FAVORITE BUTTON FUNCTIONALITY ------------- */
+
 // Set up functionality for favorite button
 function setupFavoriteButton() {
   const favoriteButtonRef = document.querySelector(".favorite");
@@ -147,6 +153,8 @@ function checkIfFavorite(buttonRef, animalName) {
     buttonRef.classList.add("lar");
   }
 }
+
+/* ------------- ADD TO/REMOVE FROM LIST FUNCTIONALITY ------------- */
 
 // Set up toggle functionality for buttons in the add/remove section
 function setupToggleAddRemoveSection() {

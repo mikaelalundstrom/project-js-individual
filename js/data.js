@@ -1,3 +1,20 @@
+window.addEventListener("load", () => {
+  setuptoTopBtn();
+});
+
+// Reveal scroll to top button on scroll
+function setuptoTopBtn() {
+  const toTopBtn = document.querySelector(".scroll-to-top");
+  window.addEventListener("scroll", (e) => {
+    if (window.scrollY > 20) {
+      toTopBtn.classList.remove("d-none");
+    } else {
+      toTopBtn.classList.add("d-none");
+    }
+  });
+}
+/* ------------- CREATE GRID ITEMS (FOR SEARCH RESULT/LIST ITEMS) ------------- */
+
 // Create grid items
 function createGridItems(data, parentElemRef) {
   // Create element for each animal
@@ -53,6 +70,8 @@ function createGridItems(data, parentElemRef) {
   });
 }
 
+/* ------------- ANIMAL VALIDATION ------------- */
+
 // Check if animal is valid
 function validateAnimal(animalName) {
   let validAnimal = false;
@@ -72,6 +91,8 @@ function validateAnimal(animalName) {
 
   return validAnimal;
 }
+
+/* ------------- GET LIST KEYS ------------- */
 
 // Get keys from localStorage (only includes user-made collections)
 function getCollectionKeys() {
@@ -104,6 +125,8 @@ function getAllCollectionKeys() {
   return keys;
 }
 
+/* ------------- LOCAL STORAGE: LISTS ------------- */
+
 // Data saved to localStorage has the prefix "favA_" added to it
 
 // Get collection (list) from localStorage
@@ -120,6 +143,8 @@ function setCollection(key, data) {
 function removeCollection(key) {
   localStorage.removeItem("favA_" + key);
 }
+
+/* ------------- LOCAL STORAGE: ANIMALS ------------- */
 
 // Add animal to collection (list)
 function addItemToCollection(key, animal) {

@@ -1,32 +1,75 @@
 window.addEventListener("load", () => {
-  renderFavorites(getCollection("favoriteAnimals"));
+  renderFavorites();
   renderLists();
 });
 
+/* ------------- DISPLAY FAVORITES ------------- */
+
 // Render favorites to user
-function renderFavorites(data) {
+function renderFavorites() {
+  const animals = getCollection("favoriteAnimals");
+  // Sort alphabetically
+  animals.sort((a, b) => {
+    const nameA = a.name.toUpperCase();
+    const nameB = b.name.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+
   const listGridRef = document.querySelector(".list-item-grid");
   // Do if there are favorites
-  if (data.length > 0) {
-    createGridItems(data, listGridRef);
+  if (animals.length > 0) {
+    createGridItems(animals, listGridRef);
     // Else show message to user about how to add favorites
   } else {
     document.querySelector(".message").classList.remove("d-none");
   }
 }
 
+/* ------------- DISPLAY USER-CREATED LISTS ------------- */
+
 // Render user created lists to user
 function renderLists() {
   const lists = getCollectionKeys();
+  // Sort alphabetically
+  lists.sort((a, b) => {
+    const nameA = a.toUpperCase();
+    const nameB = b.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+
   const listsContainerRef = document.querySelector(".custom-lists");
   listsContainerRef.innerHTML = "";
 
   // Do for each user created list
   lists.forEach((listName) => {
     const list = getCollection(listName);
+    // Sort alphabetically
+    list.sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+
     const listRef = document.createElement("section");
     listRef.classList.add("list");
-
     const listTitleRef = document.createElement("h2");
     listTitleRef.classList.add("list-title");
     listTitleRef.innerHTML = `<span>${listName}</span><span class="list-actions"><i class="las la-pen"></i><i class="las la-trash-alt"></i></span>`;
@@ -52,6 +95,8 @@ function renderLists() {
   setupEditListButtons();
 }
 
+/* ------------- REMOVE / EDIT FUNCTIONALITY ------------- */
+
 // Set up remove list functionality
 function setupRemoveListButtons() {
   const removeBtnRefs = document.querySelectorAll(".la-trash-alt");
@@ -59,25 +104,18 @@ function setupRemoveListButtons() {
     btn.addEventListener("click", (e) => {
       const listName = e.target.parentElement.parentElement.textContent;
       // to avoid multiple edit/remove views open at once
-      if (document.querySelector("form.edit") || document.querySelector("div.delete-list-view")) {
-        renderLists();
-        const listTitleRefs = document.querySelectorAll(".list-title");
-        listTitleRefs.forEach((elem) => {
-          if (listName === elem.textContent) {
-            elem.innerHTML = `<div class="delete-list-view">
-            <div><p>Are you sure you want to delete this list? </p></div>
+      renderLists();
+      // find correct list
+      const listTitleRefs = document.querySelectorAll(".list-title");
+      listTitleRefs.forEach((elem) => {
+        if (listName === elem.textContent) {
+          elem.innerHTML = `<div class="delete-list-view">
+            <div><p>Are you sure you want to delete "${listName}"? </p></div>
             <div><button class="delete-list">Delete</button><i class="las la-times"></i></div></div>`;
 
-            setupConfirmRemoveList(listName);
-          }
-        });
-      } else {
-        e.target.parentElement.parentElement.innerHTML = `<div class="delete-list-view">
-        <div><p>Are you sure you want to delete "${listName}"? </p></div>
-        <div><button class="delete-list">Delete</button><i class="las la-times"></i></div></div>`;
-
-        setupConfirmRemoveList(listName);
-      }
+          setupConfirmRemoveList(listName);
+        }
+      });
     });
   });
 }
@@ -102,30 +140,20 @@ function setupEditListButtons() {
     btn.addEventListener("click", (e) => {
       const listName = e.target.parentElement.parentElement.textContent;
       // to avoid multiple edit/remove views open at once
-      if (document.querySelector("form.edit") || document.querySelector("div.delete-list-view")) {
-        renderLists();
-        const listTitleRefs = document.querySelectorAll(".list-title");
-        listTitleRefs.forEach((elem) => {
-          if (listName === elem.textContent) {
-            elem.innerHTML = `<form class="edit">
+      renderLists();
+      // find correct list
+      const listTitleRefs = document.querySelectorAll(".list-title");
+      listTitleRefs.forEach((elem) => {
+        if (listName === elem.textContent) {
+          elem.innerHTML = `<form class="edit">
             <div><label for="editlistname">Edit list name:</label>
               <input type="text" id="editlistname" value="${listName}" required />
             </div>
             <div><button>Update</button><i class="las la-times"></i></div></form>`;
 
-            setupEditListForms(listName);
-          }
-        });
-      } else {
-        // Edit view template
-        e.target.parentElement.parentElement.innerHTML = `<form class="edit">
-                <div><label for="editlistname">Edit list name:</label>
-                  <input type="text" id="editlistname" value="${listName}" required />
-                </div>
-                <div><button>Update</button><i class="las la-times"></i></div></form>`;
-
-        setupEditListForms(listName);
-      }
+          setupEditListForms(listName);
+        }
+      });
     });
   });
 }

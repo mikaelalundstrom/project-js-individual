@@ -2,6 +2,8 @@ window.addEventListener("load", () => {
   setupSearchForm();
 });
 
+/* ------------- GET API DATA ------------- */
+
 // get animals based on search input from API
 async function getAnimalsbySearch(search) {
   try {
@@ -28,6 +30,8 @@ async function getAnimalsbySearch(search) {
   }
 }
 
+/* ------------- SEARCH FUNCTIONALITY ------------- */
+
 // set up Search Form
 function setupSearchForm() {
   const searchFormRef = document.querySelector("#search-form");
@@ -35,11 +39,18 @@ function setupSearchForm() {
     // to prevent reloading of page
     e.preventDefault();
     const search = e.target.search.value;
-
-    // Render data from API based on user search input
-    renderSearchResults(await getAnimalsbySearch(search));
+    // min user input length is 2 (to avoid too many results)
+    if (search.length < 2) {
+      document.querySelector(".error").classList.remove("d-none");
+    } else {
+      document.querySelector(".error").classList.add("d-none");
+      // Render data from API based on user search input
+      renderSearchResults(await getAnimalsbySearch(search));
+    }
   });
 }
+
+/* ------------- DISPLAY SEARCH RESULTS ------------- */
 
 // Render the search results for the user
 function renderSearchResults(data) {
