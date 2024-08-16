@@ -26,6 +26,11 @@ async function getAnimalsbySearch(search) {
 
     return data;
   } catch (error) {
+    const searchMessageRef = document.querySelector(".search-message");
+    searchMessageRef.insertAdjacentHTML(
+      "beforebegin",
+      `<h4 class="get-error">Something went wrong when fetching data.</h4>`
+    );
     console.log(error);
   }
 }

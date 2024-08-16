@@ -260,6 +260,13 @@ section.search {
     }
   }
 
+  .get-error {
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-align: center;
+    color: var(--color-red);
+  }
+
   .search-message {
     margin-top: 4rem;
     text-align: center;
