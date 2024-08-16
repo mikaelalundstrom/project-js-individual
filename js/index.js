@@ -9,6 +9,7 @@ async function getAnimalsbySearch(search) {
   try {
     const response = await fetch(`https://api.api-ninjas.com/v1/animals?name=${search}`, {
       method: "GET",
+      // i will change my api key after this project has been graded but for now this is ok to use :)
       headers: { "X-Api-Key": "sPv6eb3ivmt8RzDw8lEGPg==LOxs4Mxqj97XaOl4" },
     });
 
